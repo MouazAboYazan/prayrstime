@@ -3,7 +3,8 @@ const prayerTimesUrl = "https://api.aladhan.com/v1/timingsByCity?city=Tampa&coun
 fetch(prayerTimesUrl)
 	.then(response => response.json())
 	.then(data => {
-		const prayerTimes = data.data.timings;
+		// rest of your code
+			const prayerTimes = data.data.timings;
 		const hijriDate = data.data.date.hijri.month.ar + ' ' + data.data.date.hijri.day + ', ' + data.data.date.hijri.year;
 		const currentTime = new Date();
 
@@ -20,7 +21,7 @@ fetch(prayerTimesUrl)
 					break;
 				}
 			}
-		}
+	});
 
     
 
