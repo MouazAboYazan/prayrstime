@@ -1,4 +1,4 @@
-const prayerTimesUrl = "http://api.aladhan.com/v1/timingsByCity?city=Tampa&country=US&method=2";
+const prayerTimesUrl = "https://api.aladhan.com/v1/timingsByCity?city=Tampa&country=US&method=2";
 
 fetch(prayerTimesUrl)
 	.then(response => response.json())
