@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Ramadan Website</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Add any other meta tags or external CSS files here -->
+  
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var latitude, longitude;
+      
+      // Get user's location using the HTML5 geolocation API
+      navigator.geolocation.getCurrentPosition(function(position) {
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
+        
+        // Make an API request to get the prayer times for the user's location
+        $.ajax({
+          url: "https://api.aladhan.com/v1/timings?latitude=" + latitude + "&longitude=" + longitude + "&method=2",
+          method: "GET",
+          dataType: "json",
+          success: function(response) {
+            var timings = response.data.timings;
+            var prayerTimes = "";
+            
+            // Loop through the timings object to display the prayer times
+            $.each(timings, function(key, value) {
+              prayerTimes += "<p>" + key + ": " + value + "</p>";
+            });
+            
+            // Update the HTML content with the prayer times
+            $("#prayerTimes").html(prayerTimes);
+          },
+          error: function(error) {
+            console.log(error);
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <!-- Add your HTML content here -->
+  <h1> Welcome to my Ramadan Website! </h1>
+  <p> Here, you can find the date of Ramadan for each day and prayer times for your location. </p>
+  
+  <div id="prayerTimes"></div>
+  
+  <!-- You can add more HTML elements here, such as forms, tables, and images -->
+  
+  <!-- Add any external JavaScript files
+or scripts here, if necessary -->
+
+</body>
+</html>
